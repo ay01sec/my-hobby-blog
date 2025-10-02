@@ -1,16 +1,21 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro"
+const posts = await Astro.glob("./blog/*.mdx")
 ---
+<BaseLayout title="My Hobby Blog | 明るい趣味ブログ">
+<section class="hero">
+<h1>ようこそ！明るい趣味ブログへ</h1>
+<p class="eyecatch">プログラミング・ガジェット・家電・ゲームのレビューやノウハウを軽やかにお届け。</p>
+</section>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+
+<h2>新着記事</h2>
+<div class="grid">
+{posts.map((p) => (
+<a class="card" href={p.url}>
+<h3>{p.frontmatter.title ?? 'Untitled'}</h3>
+<p class="eyecatch">{p.frontmatter.description ?? ''}</p>
+</a>
+))}
+</div>
+</BaseLayout>

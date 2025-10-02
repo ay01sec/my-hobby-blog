@@ -1,0 +1,57 @@
+---
+const { title = 'My Hobby Blog', description = 'プログラミング・ガジェット・家電・ゲームの明るいブログ', noindex = false } = Astro.props
+---
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W25XWQQWNV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W25XWQQWNV');
+</script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/base.css" />
+</head>
+<body>
+<header class="wrap">
+<a class="logo" href="/">My Hobby Blog</a>
+<nav class="nav">
+<a href="/blog/">Blog</a>
+<a href="/about">About</a>
+<a href="/contact">Contact</a>
+</nav>
+</header>
+
+
+<!-- AdSense: 承認後に自動広告などのコードをここ（ヘッダー直下）へ貼り付け -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1824309517034681" crossorigin="anonymous"></script>
+
+<main class="wrap">
+<slot />
+</main>
+
+
+<footer class="wrap foot">
+<small>© {new Date().getFullYear()} My Hobby Blog</small>
+<div class="foot-links">
+<a href="/privacy">Privacy</a>
+<a href="/disclaimer">免責・広告方針</a>
+</div>
+</footer>
+</body>
+</html>
