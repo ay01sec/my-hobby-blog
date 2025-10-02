@@ -1,12 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
-const posts = await Astro.glob("./*.mdx")
+let posts = await Astro.glob("./*.mdx")
+// draft除外 & 日付降順
+const toMs = (d: unknown) => new Date(d as string | number | Date).getTime() || 0
+
+posts = posts
+  .filter((p) => !p.frontmatter?.draft)
+  .sort((a, b) => toMs(b.frontmatter?.pubDate) - toMs(a.frontmatter?.pubDate))
 ---
 <BaseLayout title="Blog | 記事一覧">
-<h1>Blog</h1>
-<ul>
-{posts.map((p) => (
-<li><a href={p.url}>{p.frontmatter.title ?? p.url}</a></li>
-))}
-</ul>
+  <h1>Blog</h1>
+  <ul>
+    {posts.map((p) => (
+      <li>
+        <a href={p.url}>
+          {p.frontmatter.title ?? p.url} — {p.frontmatter.pubDate}
+        </a>
+      </li>
+    ))}
+  </ul>
 </BaseLayout>
