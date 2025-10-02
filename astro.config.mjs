@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap'
 
 
 export default defineConfig({
-site: 'https://YOUR-DOMAIN.example', // 後で独自ドメインに差し替え
+site: 'https://various-note.jp', // 後で独自ドメインに差し替え
 integrations: [mdx(), sitemap()],
 trailingSlash: 'never',
 })

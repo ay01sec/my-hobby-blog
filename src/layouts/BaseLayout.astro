@@ -15,7 +15,11 @@ const { title = 'My Hobby Blog', description = 'プログラミング・ガジ�
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W25XWQQWNV"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+//   function gtag(){dataLayer.push(arguments);}
+  function gtag(..._args: any[]) {
+    // GA4の期待通り、arguments オブジェクトをそのまま push
+    (window as any).dataLayer.push(arguments as any);
+  }
   gtag('js', new Date());
 
   gtag('config', 'G-W25XWQQWNV');
@@ -25,7 +29,7 @@ const { title = 'My Hobby Blog', description = 'プログラミング・ガジ�
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/base.css" />
+<link rel="stylesheet" href="/src/styles/base.css">
 </head>
 <body>
 <header class="wrap">
